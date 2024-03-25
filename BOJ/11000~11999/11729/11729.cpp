@@ -23,7 +23,6 @@ int main() {
     int N;
     cin >> N;
     // 2 ^ K - 1: 하노이탑 이동 횟수의 일반항
-    // https://blog.naver.com/2gumin14/221060149259
     cout << (1 << N) - 1 << '\n';
     hanoi(1, 3, N);
 
