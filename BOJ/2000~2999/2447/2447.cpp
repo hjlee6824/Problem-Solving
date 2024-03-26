@@ -2,21 +2,14 @@
 using namespace std;
 
 int N;
-char arr[2187][2187];
-
-void print(int x, int y) {
-    for (int i = x; i < x + 3; ++i) {
-        for (int j = y; j < y + 3; ++j) {
-            if (i == x + 1 && j == y + 1) continue;
-            arr[i][j] = '*';
-        }
-    }
-}
+// 전역변수로 선언하면 기본값은 NULL로 초기화됨
+// 2187 + 1(NULL)
+char arr[2188][2188];
 
 // 3^n x 3^n 크기에서 가운데만 출력하지 않고 재귀 호출
 void func(int n, int x, int y) {
-    if (n == 3) {
-        print(x, y);
+    if (n == 1) {
+        arr[x][y] = '*';
         return;
     }
 
@@ -41,13 +34,8 @@ int main() {
 
     func(N, 0, 0);
 
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
-            cout << arr[i][j];
-        }
-
-        cout << '\n';
-    }
+    for (int i = 0; i < N; ++i)
+        cout << arr[i] << '\n';
 
     return 0;
 }
