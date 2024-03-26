@@ -34,6 +34,7 @@ int main() {
 
     func(N, 0, 0);
 
+    // NULL 문자로 출력 간단하게
     for (int i = 0; i < N; ++i)
         cout << arr[i] << '\n';
 
