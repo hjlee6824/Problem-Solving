@@ -37,7 +37,8 @@ int main() {
 
     func(N, 0, 0);
 
-    cout << cnt[0] << '\n' << cnt[1];
+    for (int i = 0; i < 2; ++i)
+        cout << cnt[i] << '\n';
 
     return 0;
 }
