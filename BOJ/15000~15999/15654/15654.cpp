@@ -3,8 +3,8 @@ using namespace std;
 
 int N, M;
 int arr[8];
-bool is_used[8];
 int num[8];
+bool is_used[8];
 
 void func(int k) {
     if (k == M) {
