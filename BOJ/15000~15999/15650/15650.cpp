@@ -15,7 +15,7 @@ void func(int k) {
 
     for (int i = 1; i <= N; ++i) {
         if (!is_used[i]) {
-            if (k >= 1 && i < arr[k - 1]) continue;
+            if (k >= 1 && i <= arr[k - 1]) continue;
             arr[k] = i;
             is_used[i] = true;
             func(k + 1);
