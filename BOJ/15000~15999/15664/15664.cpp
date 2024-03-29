@@ -16,14 +16,13 @@ void func(int k) {
 
     int tmp = 0;
     for (int i = 0; i < N; ++i) {
-        if (!is_used[i] && tmp != num[i]) {
-            if (k >= 1 && num[i] < arr[k - 1]) continue;
-            arr[k] = num[i];
-            is_used[i] = true;
-            tmp = num[i];
-            func(k + 1);
-            is_used[i] = false;
-        }
+        if (is_used[i] || tmp == num[i]) continue;
+        if (k >= 1 && num[i] < arr[k - 1]) continue;
+        arr[k] = num[i];
+        is_used[i] = true;
+        tmp = num[i];
+        func(k + 1);
+        is_used[i] = false;
     }
 }
 
