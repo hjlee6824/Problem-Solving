@@ -15,11 +15,10 @@ void func(int k) {
 
     int tmp = 0;
     for (int i = 0; i < N; ++i) {
-        if (tmp != num[i]) {
-            arr[k] = num[i];
-            tmp = num[i];
-            func(k + 1);
-        }
+        if (tmp == num[i]) continue;
+        arr[k] = num[i];
+        tmp = num[i];
+        func(k + 1);
     }
 }
 
