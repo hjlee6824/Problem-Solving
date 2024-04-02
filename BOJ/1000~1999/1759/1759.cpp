@@ -8,7 +8,6 @@ string vowels = "aeiou";
 
 bool check() {
     int consonant, vowel = 0;
-
     for (int i = 0; i < L; ++i) {
         for (auto ch : vowels) {
             if (password[i] == ch) {
@@ -17,7 +16,6 @@ bool check() {
             }
         }
     }
-
     consonant = L - vowel;
     if (vowel < 1 || consonant < 2) return false;
     return true;
@@ -30,6 +28,7 @@ void func(int n, int cur) {
                 cout << password[i];
             cout << '\n';
         }
+        return;
     }
 
     for (int i = cur; i < C; ++i) {
@@ -52,4 +51,4 @@ int main() {
 
 // 1. 백트래킹 풀이
 // 정렬이 되어 있으므로 순서를 고려할 필요 없이 선택만 하면 되기 때문에
-// 시간복잡도는 15!이 아닌 15C7 or 15C8
+// 시간복잡도는 15!이 아닌 15C7 or 15C8 (조합의 값이 최대가 되는 경우)
