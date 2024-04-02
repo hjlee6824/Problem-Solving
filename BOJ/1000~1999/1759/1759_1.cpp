@@ -4,14 +4,14 @@ using namespace std;
 int L, C;
 int arr[15];
 char alphabet[15];
-char password[15];
+string password;
 string vowels = "aeiou";
 
 bool check() {
     int consonant, vowel = 0;
-    for (int i = 0; i < L; ++i) {
-        for (auto ch : vowels) {
-            if (password[i] == ch) {
+    for (auto p : password) {
+        for (auto v : vowels) {
+            if (p == v) {
                 ++vowel;
                 break;
             }
@@ -36,14 +36,13 @@ int main() {
     sort(alphabet, alphabet + C);
 
     do {
-        int idx = 0;
+        password = "";
         for (int i = 0; i < C; ++i)
             if (arr[i] == 0)
-                password[idx++] = alphabet[i];
+                password += alphabet[i];
 
         if (check()) {
-            for (int i = 0; i < L; ++i)
-                cout << password[i];
+            for (auto ch : password) cout << ch;
             cout << '\n';
         }
     } while (next_permutation(arr, arr + C));
