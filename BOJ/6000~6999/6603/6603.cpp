@@ -4,9 +4,8 @@ using namespace std;
 int k;
 int ans[6];
 int arr[12];
-bool is_used[12];
 
-void func(int n) {
+void func(int n, int cur) {
     if (n == 6) {
         for (int i = 0; i < 6; ++i)
             cout << ans[i] << ' ';
@@ -14,14 +13,9 @@ void func(int n) {
         return;
     }
 
-    for (int i = 0; i < k; ++i) {
-        if (!is_used[i]) {
-            if (n >= 1 && arr[i] <= ans[n - 1]) continue;
-            ans[n] = arr[i];
-            is_used[i] = true;
-            func(n + 1);
-            is_used[i] = false;
-        }
+    for (int i = cur; i < k; ++i) {
+        ans[n] = arr[i];
+        func(n + 1, i + 1);
     }
 }
 
@@ -36,8 +30,7 @@ int main() {
         for (int i = 0; i < k; ++i)
             cin >> arr[i];
 
-        func(0);
-
+        func(0, 0);
         cout << '\n';
     }
 
