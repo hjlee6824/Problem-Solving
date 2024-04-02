@@ -30,7 +30,6 @@ void func(int n, int cur) {
                 cout << password[i];
             cout << '\n';
         }
-        return;
     }
 
     for (int i = cur; i < C; ++i) {
@@ -52,3 +51,5 @@ int main() {
 }
 
 // 1. 백트래킹 풀이
+// 정렬이 되어 있으므로 순서를 고려할 필요 없이 선택만 하면 되기 때문에
+// 시간복잡도는 15!이 아닌 15C7 or 15C8
