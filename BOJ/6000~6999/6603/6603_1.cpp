@@ -2,6 +2,8 @@
 using namespace std;
 
 int k;
+int num[12];
+int arr[12];
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -11,19 +13,16 @@ int main() {
         cin >> k;
         if (k == 0) break;
 
-        vector<int> num, v;
         for (int i = 0; i < k; ++i) {
-            int input;
-            cin >> input;
-            num.push_back(input);
-            v.push_back(i < 6 ? 0 : 1);
+            cin >> num[i];
+            arr[i] = (i < 6 ? 0 : 1);
         }
 
         do {
             for (int i = 0; i < k; ++i) 
-                if (v[i] == 0) cout << num[i] << ' ';
+                if (arr[i] == 0) cout << num[i] << ' ';
             cout << '\n';
-        } while (next_permutation(v.begin(), v.end()));
+        } while (next_permutation(arr, arr + k));
 
         cout << '\n';
     }
