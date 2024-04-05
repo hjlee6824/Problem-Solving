@@ -42,7 +42,6 @@ void solve(int cur) {
         S[cur] += W[i];
         S[i] += W[cur];
     }
-        
 }
 
 int main() {
