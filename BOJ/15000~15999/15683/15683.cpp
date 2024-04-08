@@ -10,7 +10,7 @@ int dy[4] = {0, 1, 0, -1};
 vector<pair<int, int>> cctv;
 
 // x, y의 위치에서 dir 방향으로 감시 영역 계산
-void paint(int x, int y, int dir) {
+void upd(int x, int y, int dir) {
     dir %= 4;
     while (true) {
         x += dx[dir];
@@ -53,26 +53,26 @@ int main() {
             tie(x, y) = cctv[i];
             
             if (board[x][y] == 1) {
-                paint(x, y, dir);
+                upd(x, y, dir);
             }
             else if (board[x][y] == 2) {
-                paint(x, y, dir);
-                paint(x, y, dir + 2);
+                upd(x, y, dir);
+                upd(x, y, dir + 2);
             }
             else if (board[x][y] == 3) {
-                paint(x, y, dir);
-                paint(x, y, dir + 1);
+                upd(x, y, dir);
+                upd(x, y, dir + 1);
             }
             else if (board[x][y] == 4) {
-                paint(x, y, dir);
-                paint(x, y, dir + 1);
-                paint(x, y, dir + 2);
+                upd(x, y, dir);
+                upd(x, y, dir + 1);
+                upd(x, y, dir + 2);
             }
             else {
-                paint(x, y, dir);
-                paint(x, y, dir + 1);
-                paint(x, y, dir + 2);
-                paint(x, y, dir + 3);
+                upd(x, y, dir);
+                upd(x, y, dir + 1);
+                upd(x, y, dir + 2);
+                upd(x, y, dir + 3);
             }
         }
 
