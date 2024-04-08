@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define X first
-#define Y second
-
 int N, M;
 int input[8][8];
 int board[8][8];
