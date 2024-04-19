@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define X first
-
 int n, w, L;
 
 queue<int> q;
