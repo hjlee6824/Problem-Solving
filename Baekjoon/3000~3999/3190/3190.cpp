@@ -10,12 +10,7 @@ int board[100][100]; // 0은 빈 칸, 1은 뱀, 2는 사과
 int dx[4] = {0, 1, 0, -1};
 int dy[4] = {1, 0, -1, 0};
 queue<pair<int, char>> q;
-deque<pair<int, int>> snake;
-
-void rotate_dir(char ch) {
-    if (ch == 'L') dir = ((dir == 0) ? 3 : (dir - 1));
-    else dir = (dir + 1) % 4;
-}
+deque<pair<int, int>> dq;
 
 int main() {
     ios::sync_with_stdio(0);
@@ -23,9 +18,9 @@ int main() {
 
     cin >> n >> k;
     while (k--) {
-        int i, j;
-        cin >> i >> j;
-        board[i - 1][j - 1] = 2;
+        int a, b;
+        cin >> a >> b;
+        board[a - 1][b - 1] = 2;
     }
 
     cin >> l;
@@ -36,37 +31,41 @@ int main() {
         q.push({x, c});
     }
 
-    int game_time = 0;
-    snake.push_front({0, 0});
+    int second = 0;
+    dq.push_front({0, 0});
     board[0][0] = 1;
 
     while (true) {
-        ++game_time;
-        auto head = snake.front();
-        auto tail = snake.back();
+        ++second;
 
-        snake.push_front({head.X + dx[dir], head.Y + dy[dir]});
-        head = snake.front();
+        auto cur = dq.front();
+        int nx = cur.X + dx[dir];
+        int ny = cur.Y + dy[dir];
 
         // 만약 벽이나 자기자신의 몸과 부딪히면 게임이 끝난다.
-        if (head.X < 0 || head.X >= n || head.Y < 0 || head.Y >= n) break;
-        if (board[head.X][head.Y] == 1) break;
+        if (nx < 0 || nx >= n || ny < 0 || ny >= n) break;
+        if (board[nx][ny] == 1) break;
 
-        // 만약 이동한 칸에 사과가 없다면, 몸길이를 줄여서 꼬리가 위치한 칸을 비워준다. 즉, 몸길이는 변하지 않는다.
-        if (board[head.X][head.Y] == 0) {
+        // 만약 이동한 칸에 사과가 없다면, 몸길이를 줄여서 꼬리가 위치한 칸을 비워준다.
+        if (board[nx][ny] != 2) {
+            auto tail = dq.back();
             board[tail.X][tail.Y] = 0;
-            snake.pop_back();
+            dq.pop_back();
         }
 
-        board[head.X][head.Y] = 1;
-
+        dq.push_front({nx, ny});
+        board[nx][ny] = 1;
+        
+        if (q.empty()) continue;
         // 게임 시작 시간으로부터 X초가 끝난 뒤에 방향을 회전
-        if (!q.empty() && (game_time == q.front().first)) {
-            rotate_dir(q.front().second);
+        auto control = q.front();
+            if (second == control.first) {
+            if (control.second == 'L') dir = (dir + 3) % 4;
+            else dir = (dir + 1) % 4;
             q.pop();
         }
     }
 
-    cout << game_time;
+    cout << second;
     return 0;
 }
